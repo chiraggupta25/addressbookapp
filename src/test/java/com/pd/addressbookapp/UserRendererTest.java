@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pd.addressbookapp.Models.ApiResponse;
+import com.pd.addressbookapp.model.ApiResponse;
 
 public class UserRendererTest {
      @Test
@@ -15,11 +15,13 @@ public class UserRendererTest {
 
         assertEquals(1, response.getUsers().size());
         assertEquals("John", response.getUsers().get(0).getName());
+        
+
     }
 
     @Test
     public void testAppRunsWithoutCrash() {
-        assertDoesNotThrow(() -> App.main(new String[]{}));
+        assertDoesNotThrow(() -> Main.main(new String[]{}));
     }
 }
 

@@ -1,16 +1,17 @@
-package com.pd.addressbookapp.Models;
+package com.pd.addressbookapp.model;
 
-public class NotificationRule {
+public class Team {
     private String id;
     private String type;
     private String summary;
     private String self;
     private String html_url;
 
-    public NotificationRule() {
+    public Team() {
     }
 
-    public NotificationRule(String id, String type, String summary, String self, String html_url) {
+
+    public Team(String id, String type, String summary, String self, String html_url) {
         this.id = id;
         this.type = type;
         this.summary = summary;

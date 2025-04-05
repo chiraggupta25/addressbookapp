@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pd.addressbookapp.Models.ApiResponse;
+import com.pd.addressbookapp.model.ApiResponse;
 
 /**
  * Unit test for simple App.
@@ -26,7 +26,7 @@ public class AppTest
 
     @Test
     public void testAppRunsWithoutCrash() {
-        assertDoesNotThrow(() -> App.main(new String[]{}));
+        assertDoesNotThrow(() -> Main.main(new String[]{}));
     }
 }
 

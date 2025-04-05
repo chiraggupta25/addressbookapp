@@ -1,4 +1,4 @@
-package com.pd.addressbookapp.Models;
+package com.pd.addressbookapp.model;
 
 import java.util.List;
 

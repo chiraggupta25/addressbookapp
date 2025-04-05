@@ -1,4 +1,4 @@
-package com.pd.addressbookapp.Utils;
+package com.pd.addressbookapp.util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Utils {
+public class HttpClientUtil {
 
     private static final String QUERY_PARAM = "query";
     private static final String USER_COUNT_PARAM = "total";
