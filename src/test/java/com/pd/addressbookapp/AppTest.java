@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pd.addressbookapp.Models.ApiResponse;
 
 /**
  * Unit test for simple App.

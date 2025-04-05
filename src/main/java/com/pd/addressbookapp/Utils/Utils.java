@@ -1,4 +1,4 @@
-package com.pd.addressbookapp;
+package com.pd.addressbookapp.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -3,6 +3,8 @@ package com.pd.addressbookapp;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
+import com.pd.addressbookapp.Utils.AppConfig;
+
 class AppConfigTest {
 
     @Test

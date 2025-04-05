@@ -1,8 +1,6 @@
-package com.pd.addressbookapp;
+package com.pd.addressbookapp.Models;
 
 import java.util.List;
-
-import com.pd.addressbookapp.Models.User;
 
 public class ApiResponse {
     private List<User> users;
