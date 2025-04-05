@@ -1,4 +1,4 @@
-package com.pd.addressbookapp.controler;
+package com.pd.addressbookapp.controller;
 
 import com.pd.addressbookapp.model.ApiResponse;
 import com.pd.addressbookapp.service.UserService;
@@ -8,7 +8,7 @@ import com.pd.addressbookapp.util.AppConfig;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class UserControler {
+public class UserController {
 
     private final AppConfig config = new AppConfig();
     private final UserService userService = new UserService();
@@ -37,9 +37,9 @@ public class UserControler {
                     System.out.println("Exiting application...");
                     break;
                 } else if (input.equalsIgnoreCase("n")) {
-                    pageIndex++;
+                    pageIndex += pageSize;
                 } else if (input.equalsIgnoreCase("p")) {
-                    if (pageIndex > 0) pageIndex--;
+                    pageIndex = Math.max(0, pageIndex - pageSize);
                 } else if (!input.trim().isEmpty()) {
                     displayUsers(url, token, false, 0, 0, input);
                     System.out.print("\nPress Enter to return...");
@@ -56,6 +56,11 @@ public class UserControler {
     private void displayUsers(String url, String token, boolean userCount, int pageSize, int pageIndex, String query) {
         try {
             ApiResponse response = userService.fetchUsers(url, token, query, userCount, pageSize, pageIndex);
+            if (response.getUsers() == null || response.getUsers().isEmpty()) {
+                System.out.println("No users found.");
+                return;
+            }
+
             if (query != null && !query.isEmpty()) {
                 response.getUsers().forEach(user -> {
                     userService.enrichUserContactMethods(user, token);
@@ -64,8 +69,13 @@ public class UserControler {
             } else {
                 UserRenderer.renderUserList(response.getUsers());
             }
-            System.out.printf("Total Users: %d | Page Size: %d | Page Index: %d | More: %b%n",
-                    response.getTotal(), response.getLimit(), response.getOffset(), response.isMore());
+
+            int currentPage = pageSize > 0 ? (pageIndex / pageSize) + 1 : 1;
+            int totalPages = pageSize > 0 ? (int) Math.ceil((double) response.getTotal() / pageSize) : 1;
+
+            System.out.printf("Total Users: %d | Page Size: %d | Page Index: %d of %d | More: %b%n",
+                    response.getTotal(), pageSize, currentPage, totalPages, response.isMore());
+
         } catch (Exception e) {
             System.err.println("Unable to fetch users: " + e.getMessage());
         }

@@ -1,6 +1,6 @@
 package com.pd.addressbookapp;
 
-import com.pd.addressbookapp.controler.UserControler;
+import com.pd.addressbookapp.controller.UserController;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,7 +8,7 @@ public class Main {
         System.out.println("This is a simple command line application to view users.\n");
 
         // Initialize and run the UserController
-        UserControler userController = new UserControler();
+        UserController userController = new UserController();
         userController.run();
     }
 }
