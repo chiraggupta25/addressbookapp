@@ -13,6 +13,15 @@ public class UserController {
     private final AppConfig config = new AppConfig();
     private final UserService userService = new UserService();
 
+    //private static final String RESET = "\u001B[0m";
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    //private static final String YELLOW = "\u001B[33m";
+    private static final String BLUE = "\u001B[34m";
+    //private static final String PURPLE = "\u001B[35m";
+    private static final String CYAN = "\u001B[36m";
+
+
     public void run() {
         String url = config.getProperty("pd.endpoint");
         String token = config.getProperty("pd.token");
@@ -25,17 +34,18 @@ public class UserController {
             while (true) {
                 // Clear the console
                 System.out.println("\033[H\033[2J");
-                System.out.println("Welcome to the Address Book App!");
-                System.out.println("This is a simple command line application to view users.\n");
-                System.out.println("Fetching users...");
+                System.out.println(BLUE+"Welcome to the Address Book App!");
+                System.out.println(BLUE+"This is a simple command line application to view users.\n");
+                System.out.println(CYAN+"Fetching users...");
                 displayUsers(url, token, userCount, pageSize, pageIndex, null);
 
-                System.out.println("\nCommands:");
+                System.out.println(GREEN+"\nCommands:");
                 System.out.println(" - N: Next page");
                 System.out.println(" - P: Previous page");
                 System.out.println(" - E: Exit");
                 System.out.println(" - Or enter a name to search:");
-                System.out.print("Enter command: ");
+                System.out.print(RED+"Enter command: ");
+                System.out.print(CYAN);
 
                 input = reader.readLine();
                 if (input == null || input.equalsIgnoreCase("e") || input.equalsIgnoreCase("exit")) {
