@@ -23,6 +23,11 @@ public class UserController {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             String input;
             while (true) {
+                // Clear the console
+                System.out.println("\033[H\033[2J");
+                System.out.println("Welcome to the Address Book App!");
+                System.out.println("This is a simple command line application to view users.\n");
+                System.out.println("Fetching users...");
                 displayUsers(url, token, userCount, pageSize, pageIndex, null);
 
                 System.out.println("\nCommands:");
@@ -70,8 +75,8 @@ public class UserController {
                 UserRenderer.renderUserList(response.getUsers());
             }
 
-            int currentPage = pageSize > 0 ? (pageIndex / pageSize) + 1 : 1;
-            int totalPages = pageSize > 0 ? (int) Math.ceil((double) response.getTotal() / pageSize) : 1;
+            int currentPage = getCurrentPage(pageIndex, pageSize);
+            int totalPages = getTotalPages(response.getTotal(), pageSize);
 
             System.out.printf("Total Users: %d | Page Size: %d | Page Index: %d of %d | More: %b%n",
                     response.getTotal(), pageSize, currentPage, totalPages, response.isMore());
@@ -79,5 +84,11 @@ public class UserController {
         } catch (Exception e) {
             System.err.println("Unable to fetch users: " + e.getMessage());
         }
+    }
+    private static int getCurrentPage(int pageIndex, int pageSize) {
+        return pageSize > 0 ? (pageIndex / pageSize) + 1 : 1;
+    }
+    private static int getTotalPages(int totalUsers, int pageSize) {
+        return pageSize > 0 ? (int) Math.ceil((double) totalUsers / pageSize) : 1;
     }
 }
